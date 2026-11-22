@@ -1,15 +1,31 @@
 {
   "schema": 1,
-  "updated": "2026-11-22T20:29:43Z",
+  "updated": "2026-11-22T22:16:07Z",
   "channels": {
     "release": {
-      "latest": "0.7.0.0"
+      "latest": "0.7.0.1"
     },
     "develop": {
       "latest": null
     }
   },
   "releases": [
+    {
+      "version": "0.7.0.1",
+      "channel": "release",
+      "date": "2026-11-23",
+      "notes": "notes/0.7.0.1.md",
+      "docker": "ghcr.io/codyrwhite/plexmediamanager:0.7.0.1",
+      "worker_flatpak": "0.7.0.1",
+      "min_worker": "0.7.0.0",
+      "highlights": {
+        "new": [],
+        "fixed": [
+          "**Safari no longer gets stuck on \"PMM is offline\".** One failed page load (the server restarting during an update, an iPad or iPhone waking up before its network is back) showed the offline page, and it only tried again when the browser reported going from offline to online, which it never did, so it stayed there while the server was up. The offline page now checks the server by itself every 10 seconds, when it is shown again and on **Try again**, and as soon as the server answers it removes the app's service worker and stored files and opens the app (the app installs them again). Opening a page now tries the server a second time before giving up, passes redirects (such as to the sign-in) on in the form Safari accepts, and leaves the sign-in pages (`/login`, `/setup`, `/auth/...`, a worker's `/sso`) and `/api/` to the browser. The app asks for the service worker without the browser's cache, so this fix reaches installed copies at the next visit."
+        ],
+        "changed": []
+      }
+    },
     {
       "version": "0.7.0.0",
       "channel": "release",
