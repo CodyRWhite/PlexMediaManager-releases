@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "updated": null,
+  "channels": {
+    "release": { "latest": null },
+    "develop": { "latest": null }
+  },
+  "releases": []
+}
