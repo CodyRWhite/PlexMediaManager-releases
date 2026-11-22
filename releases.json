@@ -1,15 +1,45 @@
 {
   "schema": 1,
-  "updated": "2026-11-22T10:13:57Z",
+  "updated": "2026-11-22T11:41:03Z",
   "channels": {
     "release": {
-      "latest": "0.5.0.0"
+      "latest": "0.6.0.0"
     },
     "develop": {
       "latest": null
     }
   },
   "releases": [
+    {
+      "version": "0.6.0.0",
+      "channel": "release",
+      "date": "2026-11-22",
+      "notes": "notes/0.6.0.0.md",
+      "docker": "ghcr.io/codyrwhite/plexmediamanager:0.6.0.0",
+      "worker_flatpak": "0.6.0.0",
+      "min_worker": "0.6.0.0",
+      "highlights": {
+        "new": [
+          "**Rich Discord messages**: finished applies, the daily digest and \"Send test\" are sent as embeds (summary, failed files first, size saved, tracks kept and removed, worker, poster thumbnail and a link to the item). New settings *Rich Discord messages* (on) and *PMM's public address* (empty: no links or posters). The other channels keep plain text, and Discord falls back to plain text if it refuses an embed.",
+          "**Plex labels** (off by default): one label per Plex item by its state (Cleaned, Needs review, Waiting; each name editable, empty turns one off). PMM only removes labels it recorded adding, renames move them, and Settings, Connections, Plex labels has *Preview changes* (dry run) and *Sync labels now* (admins, audit-logged). New table `plex_labels_applied`; new Plex client helper for edits (PUT).",
+          "**Queue forecast** on the Overview and Insights: when the queued work and the waiting changes will finish, per worker, and the projected space saved, from the workers' measured speeds, run window and quiet hours. New `GET /api/forecast` (cached 2 minutes). No media file is read.",
+          "**Learned encode presets** (setting *Learn quality settings*, off at first): verified conversions are recorded (table `conversion_history`); a worker about to search the HEVC quality is told the suggestion for a similar file (same series first). At confidence 0.8 or more with at least 3 results it skips the search (the full check of the encode still runs and a failure falls back to the normal search), otherwise the search covers a narrower range. The item page shows \"Preset from <series> (confidence x)\". Worker protocol: optional `preset` in a claimed task and `conversion` in the done report; older workers and main apps ignore them.",
+          "**Queue new imports from Sonarr and Radarr** (Settings, Connections, off by default): the webhook at `/api/arr/webhook` now understands On Import, On Upgrade, On Rename and On File Delete (and answers the Test button). An imported file is indexed at once and its analysis goes to the front of the worker queue (still a dry run; Auto-apply decides what is applied); a renamed file keeps its index row; a deleted file leaves the index; paths go through the Sonarr/Radarr path map; repeated events are ignored for 30 seconds; an import that needs review adds a bell notification. The webhook secret can be sent as `?token=` or an `X-PMM-Token` header. Settings: **Queue new imports** (`arr_queue_imports`, off) and **Ignore repeated events** (`arr_import_debounce_seconds`, 30). The Connections tab shows the address, the setup steps, the last call heard and a **Test** button (`GET /api/arr/imports`, `POST /api/arr/imports/test`, audit action `arr_import_test`).",
+          "**Subtitles viewer** on the item page (all four layouts): the file's subtitle tracks and sidecar subtitle files, a track's lines with timestamps in a virtualized list, search, and side-by-side compare of two tracks (full and forced, or a track against its clean-up). The text of an embedded track is read by a **worker** (the main app never reads the media file) and cached on the main app; sidecar files up to 2 MB are read directly; image subtitles say so. New `GET /api/library/items/{id}/subtitles` and `/subtitles/text`. Settings: **Subtitle viewer cache** (`subtitle_view_cache_mb`, 50) and **Keep viewed subtitles for** (`subtitle_view_cache_days`, 14).",
+          "**Title rules**: pin a title (*Never touch*) or override the library rules for one item, a season or a series: extra audio languages to keep, English commentary, full subtitles, a different subtitle profile, skip the HEVC conversion. Resolution order item > season > series > library rules. Pinned titles are skipped by the analysis passes and refused by Apply and Auto-apply (with the reason); a rule change re-plans the covered titles at once from their stored analysis. A badge on rows, cards and pages, a **Title rules** smart view, an editor on item, season and series pages, and **Settings, Libraries: Title rules** (admins change, everyone sees). Audit-logged, and carried by the settings export and import (`title_overrides`). New `GET/PUT /api/title-rules`, `GET /api/title-rules/for`, `DELETE /api/title-rules/{id}`, `POST /api/title-rules/preview`.",
+          "**Preview impact**: while a planning setting is unsaved, the Save bar says **This change affects N files**, by change type (audio removed or kept, subtitles removed or added, remux, conversion) and GB, with the list a page at a time. Worked out in a background task by re-planning every analysed file from its stored analysis: no media file is read. The title rule editor previews a rule the same way. New `POST /api/settings/preview-impact`, `GET`/`DELETE /api/settings/preview-impact/{id}`.",
+          "**Season check** on season and series pages: mixed codecs, resolutions, audio language sets, subtitle sets or missing forced subtitles, with per-episode details. The **Season inconsistent** smart view now also catches differing audio and subtitle sets. New `GET /api/library/season-check`.",
+          "**Watch-aware queue order** (Settings, Workers: Queue order, on by default): Plex's On Deck / Continue Watching first, then recently added files, then the rest; a running job is never pre-empted. On Deck comes from one cached Plex call every 15 minutes; without Plex, recently added goes first. The Overview and the item page show the reason."
+        ],
+        "fixed": [],
+        "changed": [
+          "**Queue new imports** is new: **existing installs keep queueing imports** (it is switched on once at the first start of this version, unless it was saved before), and **new installs start with it off**. While it is off, webhook calls from Sonarr and Radarr are ignored.",
+          "Worker protocol: only additions. The subtitle viewer's request is an ordinary analysis task (placed first in the queue) with the existing `subtitles:<track id>` read, and the learned presets add an optional `preset` hint and `conversion` report, so workers of every version keep working (older ones just don't get or send those).",
+          "The database gets `title_rules`, `conversion_history` and `plex_labels_applied` tables and the library index a `title_rule` column, created at start-up. Back up before upgrading, as always.",
+          "The settings export's `title_overrides` now holds the title rules (it was an empty placeholder)."
+        ]
+      }
+    },
     {
       "version": "0.5.0.0",
       "channel": "release",
