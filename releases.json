@@ -1,15 +1,34 @@
 {
   "schema": 1,
-  "updated": "2026-11-23T00:31:59Z",
+  "updated": "2026-11-23T06:30:09Z",
   "channels": {
     "release": {
-      "latest": "0.7.0.2"
+      "latest": "0.7.0.3"
     },
     "develop": {
       "latest": null
     }
   },
   "releases": [
+    {
+      "version": "0.7.0.3",
+      "channel": "release",
+      "date": "2026-11-23",
+      "notes": "notes/0.7.0.3.md",
+      "docker": "ghcr.io/codyrwhite/plexmediamanager:0.7.0.3",
+      "worker_flatpak": "0.7.0.3",
+      "min_worker": "0.7.0.0",
+      "highlights": {
+        "new": [],
+        "fixed": [
+          "**Library filters and search show the right files.** Clicking a smart view, changing a filter or typing a search quickly could show the previous list again when an older, slower reply arrived last; a reply from a superseded load is now ignored.",
+          "**The setup wizard stays closed when you close it.** On a slow connection a late \"still open\" save could land after \"closed\" or \"done\" and reopen the wizard; its saves now go out in order.",
+          "**Numbers are formatted for your region.** Counts on the Overview, in the Library tabs and smart views, Insights, History, System and the Workers dialog (such as 36609 files) now show with your region's thousands separator, 36,609 in English, 36.609 in German, 36 609 in French and 1,23,456 in Indian English, and decimals, percentages and sizes follow it too (1.5 GB, 1,5 GB). The region is the one of your language setting, or of your browser while the language is *Automatic*. This includes the sentences the server writes, such as the notification bell, task results and health checks, and the charts' text descriptions. Years, versions, ids, ports and file names are left as they are. The smoke tests now fail on any number without a separator, in English, German, French and the pseudo-locale.",
+          "**A fresh start could undo a just-finished change in the Library.** When PMM filled a new library index at start-up, a file whose analysis or commit finished at that moment could be shown with its older state (for example a converted file back as \"to do\"). The start-up fill now leaves any row that changed while it was reading."
+        ],
+        "changed": []
+      }
+    },
     {
       "version": "0.7.0.2",
       "channel": "release",
