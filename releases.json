@@ -1,15 +1,31 @@
 {
   "schema": 1,
-  "updated": "2026-11-23T09:18:37Z",
+  "updated": "2026-11-23T09:44:08Z",
   "channels": {
     "release": {
-      "latest": "0.8.0.1"
+      "latest": "0.8.0.2"
     },
     "develop": {
       "latest": null
     }
   },
   "releases": [
+    {
+      "version": "0.8.0.2",
+      "channel": "release",
+      "date": "2026-11-23",
+      "notes": "notes/0.8.0.2.md",
+      "docker": "ghcr.io/codyrwhite/plexmediamanager:0.8.0.2",
+      "worker_flatpak": "0.8.0.2",
+      "min_worker": "0.8.0.0",
+      "highlights": {
+        "new": [],
+        "fixed": [
+          "**Hand back and Skip always show on a busy worker's card.** When the Overview loaded slowly, a worker's live card could appear without its Hand back and Skip file buttons, and they stayed missing until the worker moved on to another file; the buttons now appear as soon as PMM knows you are an admin."
+        ],
+        "changed": []
+      }
+    },
     {
       "version": "0.8.0.1",
       "channel": "release",
