@@ -1,15 +1,31 @@
 {
   "schema": 1,
-  "updated": "2026-11-22T22:16:07Z",
+  "updated": "2026-11-23T00:31:59Z",
   "channels": {
     "release": {
-      "latest": "0.7.0.1"
+      "latest": "0.7.0.2"
     },
     "develop": {
       "latest": null
     }
   },
   "releases": [
+    {
+      "version": "0.7.0.2",
+      "channel": "release",
+      "date": "2026-11-23",
+      "notes": "notes/0.7.0.2.md",
+      "docker": "ghcr.io/codyrwhite/plexmediamanager:0.7.0.2",
+      "worker_flatpak": "0.7.0.2",
+      "min_worker": "0.7.0.0",
+      "highlights": {
+        "new": [],
+        "fixed": [
+          "**The top bar stays put on long pages.** Scrolling down a long page, such as Settings → Subtitles, slid the top bar up out of view after about one window height, and where the top bar wraps onto two rows (narrow windows, long languages) the Settings tabs slid under it. The top bar now stays at the top for the whole page, and the Settings tabs stick right below it, whatever its height."
+        ],
+        "changed": []
+      }
+    },
     {
       "version": "0.7.0.1",
       "channel": "release",
