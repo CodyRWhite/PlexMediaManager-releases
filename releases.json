@@ -1,15 +1,32 @@
 {
   "schema": 1,
-  "updated": "2026-11-23T06:30:09Z",
+  "updated": "2026-11-23T07:58:57Z",
   "channels": {
     "release": {
-      "latest": "0.7.0.3"
+      "latest": "0.8.0.0"
     },
     "develop": {
       "latest": null
     }
   },
   "releases": [
+    {
+      "version": "0.8.0.0",
+      "channel": "release",
+      "date": "2026-11-23",
+      "notes": "notes/0.8.0.0.md",
+      "docker": "ghcr.io/codyrwhite/plexmediamanager:0.8.0.0",
+      "worker_flatpak": "0.8.0.0",
+      "min_worker": "0.8.0.0",
+      "highlights": {
+        "new": [
+          "**The rest of the interface follows your language.** Texts the server writes now translate too: why a track is kept or removed, plan warnings and the Library's one-line summaries, why a worker is paused and what it is doing (\"extracting subtitles 42%\"), Health details, Problem file reasons, every bell notification, scheduled task results, the whole Settings page (labels, help texts, choices, sections) and error messages. Files analysed before the upgrade translate as well. Logs, the CLI and Discord stay English.",
+          "**Language names in your language.** The item page and Insights show a track's language by name in the language you chose instead of a code, and the special codes read as words: *No dialogue* (zxx), *Unknown language* (und), *Several languages* (mul)."
+        ],
+        "fixed": [],
+        "changed": []
+      }
+    },
     {
       "version": "0.7.0.3",
       "channel": "release",
