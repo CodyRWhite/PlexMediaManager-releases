@@ -1,15 +1,32 @@
 {
   "schema": 1,
-  "updated": "2026-11-23T07:58:57Z",
+  "updated": "2026-11-23T09:18:37Z",
   "channels": {
     "release": {
-      "latest": "0.8.0.0"
+      "latest": "0.8.0.1"
     },
     "develop": {
       "latest": null
     }
   },
   "releases": [
+    {
+      "version": "0.8.0.1",
+      "channel": "release",
+      "date": "2026-11-23",
+      "notes": "notes/0.8.0.1.md",
+      "docker": "ghcr.io/codyrwhite/plexmediamanager:0.8.0.1",
+      "worker_flatpak": "0.8.0.1",
+      "min_worker": "0.8.0.0",
+      "highlights": {
+        "new": [],
+        "fixed": [
+          "**Error messages follow your language.** The errors PMM shows when something can't be done, such as \"not in the library index\", \"only an admin can do that\", a name that is already taken, a backup that can't be restored or a Settings value that isn't allowed, now appear in the language you chose, with names, paths and numbers kept as they are; the English wording is unchanged, and the few messages that only a worker or another program ever reads stay in English.",
+          "**Settings choices show names instead of raw values.** Choices such as Health check, Who gets subtitles, the encoder, the HEVC strategy and x265 preset, the bit depth, the Whisper model and the Library layout used to list words like *balanced*, *ultrafast* or *auto*; they now read as labelled options (for example *Best quality*, *Ultra fast (largest files)*, *Automatic*) on the Settings page and on a worker's own page, and translate with the rest of the interface."
+        ],
+        "changed": []
+      }
+    },
     {
       "version": "0.8.0.0",
       "channel": "release",
